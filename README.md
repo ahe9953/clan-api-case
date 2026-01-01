@@ -1,4 +1,4 @@
-Markdown# Vertigo Games - Clan Backend API
+# Vertigo Games - Clan Backend API
 
 ![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.109.0-green.svg)
@@ -9,7 +9,7 @@ Bu proje, Vertigo Games backend case study kapsamında geliştirilmiş, oyun kla
 
 ## 📸 Ekran Görüntüleri
 
-Projenin çalıştığına dair kanıt niteliğindeki ekran görüntüleri aşağıdadır:
+Projenin ait ekran görüntüleri aşağıdadır:
 
 ### 1. API Dokümantasyonu (Swagger UI)
 API'nin tüm endpoint'leri Swagger arayüzü üzerinden test edilebilir.
@@ -53,21 +53,53 @@ vertigo-clan-api/
 ├── Dockerfile           # Konteyner tanımı
 ├── seed.py              # Veri yükleme scripti
 └── requirements.txt     # Bağımlılıklar
-🐳 Docker ile Kurulum ve Çalıştırma (Önerilen)Projeyi herhangi bir Python kurulumuna ihtiyaç duymadan, izole bir konteyner içinde çalıştırmak için aşağıdaki adımları izleyin.1. GereksinimlerDocker Desktop'ın bilgisayarınızda kurulu ve çalışıyor olması gerekmektedir.2. İmajı Oluşturma (Build)Terminali proje ana dizininde açın ve Docker imajını oluşturun:Bashdocker build -t vertigo-clan-api .
-3. Konteyneri Başlatma (Run)Uygulamayı 8080 portunda arka planda çalıştırın:Bashdocker run -d --name clan-container -p 8080:8080 vertigo-clan-api
-4. Örnek Verileri Yükleme (Seeding)Veritabanı konteyner içinde oluşturulduğunda başlangıçta boştur. clan_sample_data.csv dosyasındaki verileri veritabanına aktarmak için şu komutu çalıştırın:Bashdocker exec -it clan-container python seed.py
-(Çıktı olarak "İşlem Tamamlandı" ve yüklenen kayıt sayısını görmelisiniz.)5. Test ve DokümantasyonTarayıcınızda aşağıdaki adrese giderek Swagger UI üzerinden API'yi test edebilirsiniz:👉 http://localhost:8080/docs6. DurdurmaTest işleminiz bittiğinde konteyneri durdurup silmek için:Bashdocker stop clan-container
+```
+## 🐳 Docker ile Kurulum ve Çalıştırma (Önerilen)
+
+Projeyi herhangi bir Python kurulumuna ihtiyaç duymadan, izole bir konteyner içinde çalıştırmak için aşağıdaki adımları izleyin.
+
+### 1. Gereksinimler
+* Docker Desktop'ın bilgisayarınızda kurulu ve çalışıyor olması gerekmektedir.
+
+### 2. İmajı Oluşturma (Build)
+Terminali proje ana dizininde açın ve Docker imajını oluşturun:
+
+```
+docker build -t vertigo-clan-api .
+```
+
+### 3. Konteyneri Başlatma (Run)
+Uygulamayı 8080 portunda arka planda çalıştırın:
+```
+docker run -d --name clan-container -p 8080:8080 vertigo-clan-api
+```
+
+### 4. Örnek Verileri Yükleme (Seeding)
+Veritabanı konteyner içinde oluşturulduğunda başlangıçta boştur. clan_sample_data.csv dosyasındaki verileri veritabanına aktarmak için şu komutu çalıştırın:
+```
+docker exec -it clan-container python seed.py
+```
+(Çıktı olarak "İşlem Tamamlandı" ve yüklenen kayıt sayısını görmelisiniz.)
+
+### 5. Test ve Dokümantasyon
+Tarayıcınızda aşağıdaki adrese giderek Swagger UI üzerinden API'yi test edebilirsiniz:👉 http://localhost:8080/docs
+
+### 6. Durdurma
+Test işleminiz bittiğinde konteyneri durdurup silmek için:
+```
+docker stop clan-container
 docker rm clan-container
-🛠️ Yerel Geliştirme Ortamı (Local Python)Docker kullanmadan, doğrudan Python sanal ortamı ile çalıştırmak isterseniz:Sanal Ortam Kurulumu:Bashpython -m venv venv
-# Windows:
-venv\Scripts\activate
-# Mac/Linux:
-source venv/bin/activate
-Paketlerin Yüklenmesi:Bashpip install -r requirements.txt
-Sunucunun Başlatılması:Bashuvicorn app.main:app --reload
-API adresi: http://127.0.0.1:8000/docsVeri Yükleme:Bashpython seed.py
-📡 API EndpointleriMetotEndpointAçıklamaGET/clans/Tüm klanları listeler (Pagination destekli).POST/clans/Yeni bir klan oluşturur. (Validasyonlu)GET/clans/search/İsme göre klan arar (Min 3 karakter).DELETE/clans/{id}ID'si verilen klanı siler.
+```
 
-Google Cloud ile deploy edilmemiştir.
+## 📡 API Endpointleri
 
-Author: Ahmet Hakan Ekşi Version: v1.0
+| Metot | Endpoint | Açıklama |
+| :--- | :--- | :--- |
+| **GET** | `/clans/` | Tüm klanları listeler (Pagination destekli). |
+| **POST** | `/clans/` | Yeni bir klan oluşturur. (Validasyonlu). |
+| **GET** | `/clans/search/` | İsme göre klan arar (Min 3 karakter). |
+| **DELETE** | `/clans/{id}` | ID'si verilen klanı siler. |
+
+
+---
+**Author:** Ahmet Hakan Ekşi **Version:** v1.0
