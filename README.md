@@ -18,7 +18,7 @@ API'nin tüm endpoint'leri Swagger arayüzü üzerinden test edilebilir.
 ### 2. Docker Konteyner Durumu
 Proje Docker üzerinde başarıyla derlenmiş ve çalıştırılmıştır.
 
-### 3. Veri Yükleme (Seeding) & JSON Yanıtı
+### 3. Veri Yükleme (Seeding)
 Örnek veriler (CSV) başarıyla veritabanına işlenmiş ve API üzerinden erişilebilir hale gelmiştir.
 ![Seed Result](screenshots/seed_result.png)
 
@@ -103,3 +103,4 @@ docker rm clan-container
 
 ---
 **Author:** Ahmet Hakan Ekşi **Version:** v1.0
+
